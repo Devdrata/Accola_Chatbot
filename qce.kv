@@ -1,0 +1,130 @@
+ScreenManagement:
+    WelcomeScreen:
+    DetailsScreen:
+    ChathistScreen:
+
+<WelcomeScreen>:
+
+    on_enter: self.change
+
+    canvas.before:
+
+        BorderImage:
+
+            border: 10,10,10,10
+
+            pos: self.pos
+
+            size: self.size
+
+            source: 'download.png'
+
+    name: "Welcome"
+    AnchorLayout:
+
+        anchor_x: 'center'
+
+        anchor_y: 'center'
+
+        Image:
+
+            source: 'logo.png'
+
+            size_hint: None, None
+
+            size: 150,150
+<DetailsScreen>:
+    canvas.before:
+        BorderImage:
+            border: 10,10,10,10
+            pos: self.pos
+            size: self.size
+            source: 'bg.jpg'
+    name: "form"
+    BoxLayout:
+        orientation: "vertical"
+        BoxLayout:
+            Label:
+                text: "What's Your Name?"
+            TextInput:
+                id: username
+                hint_text:"Enter Name"
+        BoxLayout:
+            Label:
+                text: "What Grade Are You Studying In?" 
+            Spinner:
+                id: grade
+                text:"Select Grade"
+                values: ("I","II","III","IV","V","VI","VII","VIII","IX","X","XI","XII")
+                #Make Number Only
+        BoxLayout:
+            Label:
+                text: "What is your school name?"
+            TextInput:
+                id: schl
+                hint_text: "Enter School name"
+        BoxLayout:
+            Label:
+                text: "What Board Is Your \n School Affiliated to?"
+            TextInput:
+                id: board
+                hint_text:"Enter Your school's board, for example: CBSE,State Board,etc."
+        BoxLayout:
+            Label:
+                text: "What is your \n Passion/Career Goal?"
+            TextInput:
+                id: goal
+                hint_text: "Enter your answer"
+        BoxLayout:
+            Label:
+                text: "What do you want to \n call the chatbot?"
+            TextInput:
+                id: name
+                hint_text: "You can call this chatbot anything!"
+        Button:
+            text: "Proceed"
+            on_release: root.formbutton()
+
+
+
+<ChathistScreen>
+
+    canvas.before:
+        BorderImage:
+            border: 10,10,10,10
+            pos: self.pos
+            size: self.size
+            source: 'bg.jpg'
+    name: "Chat with bot"
+    #Label:
+    #    size_hint:1,1
+    #    text: "Your Personal Mental Health Assistant!"
+    BoxLayout:
+        orientation:"vertical"
+        rows:2
+        ScrollView:
+            size_hint_y: .9
+            scroll_y: 0
+            scroll_distance: 1
+            id:sv
+            size_hint: 1,1
+            BoxLayout:
+                spacing: 30
+                orientation: "vertical"
+                id: BL
+                size_hint_y: None
+                height: self.minimum_height
+
+        BoxLayout:
+            size_hint_y: .1
+            TextInput:
+                size: 1,self.minimum_height
+                id: msg
+                hint_text: "Enter Message Here!"
+                #on_text_validate:root.send() (Will not work for multiline text)
+            Button:
+                id:send
+                text: "Send!"
+                on_press: root.send(root.count)
+
+#ADD FONT TO CHAT, SO YOU CAN ADD FONT AND COLOR TAGS FOR TH EBOT AND USER SEPERATELY, FIGURE OUT THE ALIGNMENT ISSUE
